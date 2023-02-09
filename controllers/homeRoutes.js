@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const { Post, Comment, User } = require('../models');
+const withAuth = require("../utils/auth");
+
 
 router.get('/',async (req, res) => {
     const postData = await Post.findAll({include:[User]},{include: [Comment]})
@@ -14,7 +16,7 @@ router.get('/',async (req, res) => {
 
 router.get('/post/:id',async (req, res) => {
   const postData = await Post.findByPk(req.params.id, {include:[User]})
-  const posts = post.get({ plain: true });
+  const posts = postData.get({ plain: true });
 
   res.render('post', { 
     posts, 
