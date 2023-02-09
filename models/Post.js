@@ -13,6 +13,10 @@ Post.init(
     description: {
       type: DataTypes.STRING,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   },
   {
     sequelize,
